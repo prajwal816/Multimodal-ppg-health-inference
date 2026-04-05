@@ -27,7 +27,11 @@ class FusionEngine:
         # Lightweight embedding: downsampled histogram + spatial pooling (no trainable CNN in box)
         small = frame_bgr[::8, ::8, :].astype(np.float32) / 255.0
         flat = small.reshape(-1, 3)
-        hist = np.histogramdd(flat, bins=(4, 4, 4), range=((0, 1),) * 3)[0].ravel()
+        hist = np.histogramdd(
+            (flat[:, 0], flat[:, 1], flat[:, 2]),
+            bins=(4, 4, 4),
+            range=((0, 1), (0, 1), (0, 1)),
+        )[0].ravel()
         hist = hist.astype(np.float32)
         if hist.size >= self._vdim:
             v = hist[: self._vdim]

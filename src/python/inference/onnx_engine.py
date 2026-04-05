@@ -3,10 +3,9 @@
 from __future__ import annotations
 
 import logging
-import os
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Optional, Tuple
 
 import numpy as np
 
@@ -23,7 +22,8 @@ class OnnxFusionEngine:
         so.inter_op_num_threads = inter_op_threads
         so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
         providers = ["CPUExecutionProvider"]
-        if ort.get_device() == "GPU":
+        avail = set(ort.get_available_providers())
+        if "CUDAExecutionProvider" in avail:
             providers = ["CUDAExecutionProvider", "CPUExecutionProvider"]
         self._session = ort.InferenceSession(
             str(self._model_path), sess_options=so, providers=providers
@@ -72,6 +72,7 @@ def ensure_model(path: Path, ppg_len: int = 64, visual_dim: int = 16) -> Path:
 
 def _export_stub_mlp(path: Path, ppg_len: int, visual_dim: int) -> None:
     from onnx import TensorProto, helper
+    from onnx import numpy_helper
 
     fused = ppg_len + visual_dim
     hidden = 32
@@ -93,10 +94,10 @@ def _export_stub_mlp(path: Path, ppg_len: int, visual_dim: int) -> None:
         inputs=[helper.make_tensor_value_info("X", TensorProto.FLOAT, [None, fused])],
         outputs=[helper.make_tensor_value_info("Y", TensorProto.FLOAT, [None, 2])],
         initializer=[
-            helper.make_tensor("W1", TensorProto.FLOAT, list(w1.shape), w1.tobytes(), raw=True),
-            helper.make_tensor("B1", TensorProto.FLOAT, list(b1.shape), b1.tobytes(), raw=True),
-            helper.make_tensor("W2", TensorProto.FLOAT, list(w2.shape), w2.tobytes(), raw=True),
-            helper.make_tensor("B2", TensorProto.FLOAT, list(b2.shape), b2.tobytes(), raw=True),
+            numpy_helper.from_array(w1, name="W1"),
+            numpy_helper.from_array(b1, name="B1"),
+            numpy_helper.from_array(w2, name="W2"),
+            numpy_helper.from_array(b2, name="B2"),
         ],
     )
     model = helper.make_model(graph, opset_imports=[helper.make_opsetid("", 17)])
