@@ -8,9 +8,11 @@ namespace ppg::dsp {
 /// Direct Form I biquad IIR; cascade for bandpass (0.5–4 Hz typical for PPG pulse rate at 200 Hz).
 class Biquad {
 public:
-    Biquad(double b0, double b1, double b2, double a0, double a1, double a2);
+    /// Coefficients with a0 normalized to 1.0
+    Biquad(double b0, double b1, double b2, double a1, double a2);
 
     float process(float x);
+    void reset();
 
 private:
     double b0_, b1_, b2_;
