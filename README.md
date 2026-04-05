@@ -1,5 +1,7 @@
 <div align="center">
 
+<table><tr><td align="left" bgcolor="#0d1117" style="background-color:#0d1117; border-radius:12px; padding:18px 22px;">
+
 <table>
 <tr>
 <td width="88" valign="middle" align="center">
@@ -18,13 +20,14 @@
 </td>
 <td valign="middle" align="left">
 
-### Real-Time PPG Sensor Fusion & Health Inference
-
-<sub><b>Production-grade multimodal edge sensing on Raspberry Pi–class hardware</b></sub>
+<h2 style="margin:0; padding:0; border:none; font-size:1.55em; color:#ffffff; font-weight:700;">Real-Time PPG Sensor Fusion &amp; Health Inference</h2>
+<p style="margin:6px 0 0; color:#C9D1D9; font-size:0.95em;">Production-grade multimodal edge sensing on Raspberry Pi–class hardware</p>
 
 </td>
 </tr>
 </table>
+
+</td></tr></table>
 
 </div>
 
@@ -38,7 +41,7 @@
 
 <br/>
 
-<a href="./LICENSE"><img src="https://img.shields.io/static/v1?label=LICENSE&message=MIT&color=4285F4&labelColor=555555&logoColor=white&style=for-the-badge" alt="License MIT"/></a>
+<a href="#license"><img src="https://img.shields.io/static/v1?label=LICENSE&message=MIT&color=4285F4&labelColor=555555&logoColor=white&style=for-the-badge" alt="License MIT"/></a>
 &nbsp;
 <a href="./requirements.txt"><img src="https://img.shields.io/static/v1?label=PYTHON&message=3.10%2B&color=5A9FD4&labelColor=555555&logo=python&logoColor=white&style=for-the-badge" alt="Python 3.10+"/></a>
 &nbsp;
@@ -60,8 +63,7 @@
   <!-- Stage 1: Blue #4285F4 -->
   <g filter="url(#shadow)">
     <rect x="4" y="8" width="168" height="184" rx="10" fill="#ffffff" stroke="#4285F4" stroke-width="2"/>
-    <rect x="4" y="8" width="168" height="36" rx="10" fill="#4285F4"/>
-    <rect x="4" y="34" width="168" height="14" fill="#4285F4"/>
+    <rect x="4" y="8" width="168" height="40" rx="10" fill="#4285F4"/>
     <text x="88" y="32" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="bold">SENSOR INGEST</text>
     <text x="14" y="62" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• PPG I2C / SPI (sim)</text>
     <text x="14" y="80" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• Camera frame metadata</text>
@@ -120,6 +122,8 @@
 <a href="https://onnxruntime.ai/"><img src="https://img.shields.io/static/v1?label=ONNX%20RUNTIME&message=Inference&color=005CED&labelColor=555555&style=flat-square" alt="ONNX Runtime"/></a>
 
 </div>
+
+**Palette** (same family as the reference clinical-NLP header): ingestion `#4285F4` · acquisition `#9146FF` · sync/DSP `#34A853` · fusion `#F57C00` · inference output `#EA4335` · dark surfaces `#0d1117`.
 
 ---
 
