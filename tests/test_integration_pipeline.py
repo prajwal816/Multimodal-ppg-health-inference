@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import numpy as np
@@ -20,12 +21,11 @@ def test_fusion_vector_shape_and_normalization():
     assert n > 0.01
 
 
+@pytest.mark.skipif(
+    os.environ.get("PPG_RUN_ONNX_TESTS", "").strip() != "1",
+    reason="Set PPG_RUN_ONNX_TESTS=1 to run ONNX Runtime import (avoids broken native DLL noise on some Windows setups).",
+)
 def test_onnx_fusion_roundtrip(tmp_path: Path):
-    try:
-        import onnxruntime  # noqa: F401
-    except ImportError as e:
-        pytest.skip(f"ONNX Runtime not installed or DLL load failed: {e}")
-
     from inference.onnx_engine import OnnxFusionEngine
 
     model = tmp_path / "m.onnx"
@@ -35,7 +35,7 @@ def test_onnx_fusion_roundtrip(tmp_path: Path):
     try:
         eng = OnnxFusionEngine(model)
     except ImportError as e:
-        pytest.skip(f"ONNX Runtime not loadable: {e}")
+        pytest.fail(f"ONNX Runtime not loadable: {e}")
 
     fusion = FusionEngine(0.65, 0.35, vd)
     ppg = np.random.randn(win).astype(np.float32)
