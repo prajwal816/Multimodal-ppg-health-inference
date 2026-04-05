@@ -14,7 +14,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src" / "python"))
 
-from inference.onnx_engine import ensure_model  # noqa: E402
+from inference.onnx_engine import OnnxFusionEngine, ensure_model  # noqa: E402
 
 
 def main() -> None:
@@ -26,26 +26,13 @@ def main() -> None:
     model = ROOT / "models" / "fusion_mlp.onnx"
     ensure_model(model, ppg_len=win, visual_dim=vd)
     try:
-        from inference.onnx_engine import OnnxFusionEngine
-    except ImportError as e:
-        print(
-            json.dumps(
-                {
-                    "error": str(e),
-                    "note": "Install onnxruntime; on Windows ensure VC++ 2019–2022 runtime is present.",
-                },
-                indent=2,
-            )
-        )
-        raise SystemExit(1) from e
-    try:
         eng = OnnxFusionEngine(model)
     except ImportError as e:
         print(
             json.dumps(
                 {
                     "error": str(e),
-                    "note": "ONNX Runtime native library failed to load.",
+                    "note": "Install onnxruntime; on Windows install the VC++ 2019–2022 x64 runtime if DLL load fails.",
                 },
                 indent=2,
             )

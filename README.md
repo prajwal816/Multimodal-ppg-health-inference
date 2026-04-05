@@ -97,6 +97,8 @@ pip install -r requirements.txt
 python scripts/export_onnx.py   # writes models/fusion_mlp.onnx if missing
 ```
 
+**Windows:** If `import onnxruntime` fails with a DLL error, install the [Microsoft Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist) (x64). Integration tests skip ONNX when the runtime cannot load so the rest of the suite still passes.
+
 ## 8. Run instructions
 
 ### Sensor simulation (C++ only)
