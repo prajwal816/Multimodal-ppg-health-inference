@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROOT / "src" / "python"))
 
 from fusion.concat_fusion import FusionEngine  # noqa: E402
 from inference.onnx_engine import OnnxFusionEngine, ensure_model  # noqa: E402
-from io.cpp_bridge import CppJsonlPpgReader  # noqa: E402
+from bridge.cpp_bridge import CppJsonlPpgReader  # noqa: E402
 from preprocessing.ppg_ops import bandpass_sos, normalize_window  # noqa: E402
 
 logging.basicConfig(
