@@ -1,11 +1,127 @@
-# Real-Time PPG Sensor Fusion & Health Inference
+<div align="center">
 
-Production-oriented reference for a **Raspberry Pi 4** class edge node: **~200 Hz** simulated PPG (I2C/SPI path), **USB camera** hooks, **multi-threaded** acquisition and processing in **C++17**, and **sensor fusion + ONNX Runtime** inference in **Python**, with config-driven parameters and benchmark scripts.
+<table>
+<tr>
+<td width="88" valign="middle" align="center">
 
-[![CMake](https://img.shields.io/badge/CMake-3.16%2B-064F8C?logo=cmake)](https://cmake.org/)
-[![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](./CMakeLists.txt)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](./requirements.txt)
-[![ONNX Runtime](https://img.shields.io/badge/Inference-ONNX_Runtime-005CED?logo=onnx&logoColor=white)](https://onnxruntime.ai/)
+<svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Project icon">
+  <defs>
+    <linearGradient id="ppg-icon-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ab4f8"/>
+      <stop offset="1" stop-color="#c5a3ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="72" height="72" rx="16" fill="url(#ppg-icon-grad)"/>
+  <path d="M 12 44 L 20 44 L 24 30 L 30 50 L 36 24 L 42 48 L 48 44 L 60 44" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+</td>
+<td valign="middle" align="left">
+
+### Real-Time PPG Sensor Fusion & Health Inference
+
+<sub><b>Production-grade multimodal edge sensing on Raspberry Pi–class hardware</b></sub>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+<div align="center">
+
+<table><tr><td align="center" bgcolor="#0d1117" style="background-color:#0d1117; border-radius:12px; padding:20px 28px;">
+
+<b style="color:#ffffff;">Production-oriented multimodal pipeline:</b> <span style="color:#C9D1D9;">~200 Hz simulated PPG (I2C/SPI), USB camera hooks, multi-threaded <span style="color:#fff;">C++17</span> acquisition &amp; DSP, and <span style="color:#fff;">Python</span> late fusion with <span style="color:#fff;">ONNX Runtime</span> inference — config-driven, benchmarked, &amp; deployable.</span>
+
+</td></tr></table>
+
+<br/>
+
+<a href="./LICENSE"><img src="https://img.shields.io/static/v1?label=LICENSE&message=MIT&color=4285F4&labelColor=555555&logoColor=white&style=for-the-badge" alt="License MIT"/></a>
+&nbsp;
+<a href="./requirements.txt"><img src="https://img.shields.io/static/v1?label=PYTHON&message=3.10%2B&color=5A9FD4&labelColor=555555&logo=python&logoColor=white&style=for-the-badge" alt="Python 3.10+"/></a>
+&nbsp;
+<a href="./configs/default.yaml"><img src="https://img.shields.io/static/v1?label=SAMPLE%20RATE&message=200%20HZ&color=34A853&labelColor=555555&logoColor=white&style=for-the-badge" alt="200 Hz PPG"/></a>
+&nbsp;
+<a href="./configs/default.yaml"><img src="https://img.shields.io/static/v1?label=CONFIG&message=default.yaml&color=EA4335&labelColor=555555&logoColor=white&style=for-the-badge" alt="Config"/></a>
+
+<br/><br/>
+
+<b style="color:#0d1117;">PPG Multimodal Edge Pipeline</b><br/>
+<sub><i>Sensor acquisition → deterministic DSP &amp; sync → fusion → ONNX inference</i></sub>
+
+<br/>
+
+<svg width="100%" style="max-width:920px" viewBox="0 0 920 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline diagram">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.12"/></filter>
+  </defs>
+  <!-- Stage 1: Blue #4285F4 -->
+  <g filter="url(#shadow)">
+    <rect x="4" y="8" width="168" height="184" rx="10" fill="#ffffff" stroke="#4285F4" stroke-width="2"/>
+    <rect x="4" y="8" width="168" height="36" rx="10" fill="#4285F4"/>
+    <rect x="4" y="34" width="168" height="14" fill="#4285F4"/>
+    <text x="88" y="32" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="bold">SENSOR INGEST</text>
+    <text x="14" y="62" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• PPG I2C / SPI (sim)</text>
+    <text x="14" y="80" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• Camera frame metadata</text>
+    <text x="14" y="98" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• Monotonic timestamps</text>
+  </g>
+  <path d="M 178 100 L 192 100" stroke="#4285F4" stroke-width="3" fill="none"/>
+  <polygon points="198,100 190,96 190,104" fill="#4285F4"/>
+  <!-- Stage 2: Purple #9146FF -->
+  <g filter="url(#shadow)">
+    <rect x="200" y="8" width="168" height="184" rx="10" fill="#ffffff" stroke="#9146FF" stroke-width="2"/>
+    <rect x="200" y="8" width="168" height="48" rx="10" fill="#9146FF"/>
+    <text x="284" y="32" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="bold">ACQUISITION</text>
+    <text x="210" y="62" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• ~200 Hz IRQ / timer</text>
+    <text x="210" y="80" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• SPSC ring buffer</text>
+    <text x="210" y="98" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• GPIO bring-up ready</text>
+  </g>
+  <path d="M 374 100 L 388 100" stroke="#9146FF" stroke-width="3" fill="none"/>
+  <polygon points="394,100 386,96 386,104" fill="#9146FF"/>
+  <!-- Stage 3: Green #34A853 -->
+  <g filter="url(#shadow)">
+    <rect x="396" y="8" width="168" height="184" rx="10" fill="#ffffff" stroke="#34A853" stroke-width="2"/>
+    <rect x="396" y="8" width="168" height="48" rx="10" fill="#34A853"/>
+    <text x="480" y="32" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="bold">SYNC &amp; DSP</text>
+    <text x="406" y="62" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• Multimodal alignment</text>
+    <text x="406" y="80" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• Bandpass + z-score</text>
+    <text x="406" y="98" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• Fixed-length windows</text>
+  </g>
+  <path d="M 570 100 L 584 100" stroke="#34A853" stroke-width="3" fill="none"/>
+  <polygon points="590,100 582,96 582,104" fill="#34A853"/>
+  <!-- Stage 4: Orange #F57C00 -->
+  <g filter="url(#shadow)">
+    <rect x="592" y="8" width="168" height="184" rx="10" fill="#ffffff" stroke="#F57C00" stroke-width="2"/>
+    <rect x="592" y="8" width="168" height="48" rx="10" fill="#F57C00"/>
+    <text x="676" y="32" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="bold">FUSION</text>
+    <text x="602" y="62" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• Late fusion (PPG + vision)</text>
+    <text x="602" y="80" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• JSONL / OpenCV bridge</text>
+    <text x="602" y="98" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• 80-D feature vector</text>
+  </g>
+  <path d="M 766 100 L 780 100" stroke="#F57C00" stroke-width="3" fill="none"/>
+  <polygon points="786,100 778,96 778,104" fill="#F57C00"/>
+  <!-- Stage 5: Red #EA4335 -->
+  <g filter="url(#shadow)">
+    <rect x="788" y="8" width="128" height="184" rx="10" fill="#ffffff" stroke="#EA4335" stroke-width="2"/>
+    <rect x="788" y="8" width="128" height="48" rx="10" fill="#EA4335"/>
+    <text x="852" y="32" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="bold">OUTPUT</text>
+    <text x="798" y="62" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• ONNX Runtime</text>
+    <text x="798" y="80" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• &lt;50 ms budget</text>
+    <text x="798" y="98" fill="#24292f" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10">• Structured logs</text>
+  </g>
+</svg>
+
+<br/>
+
+<a href="https://cmake.org/"><img src="https://img.shields.io/static/v1?label=CMAKE&message=3.16%2B&color=064F8C&labelColor=555555&logo=cmake&logoColor=white&style=flat-square" alt="CMake"/></a>
+<a href="./CMakeLists.txt"><img src="https://img.shields.io/static/v1?label=C%2B%2B&message=17&color=00599C&labelColor=555555&style=flat-square" alt="C++17"/></a>
+<a href="https://onnxruntime.ai/"><img src="https://img.shields.io/static/v1?label=ONNX%20RUNTIME&message=Inference&color=005CED&labelColor=555555&style=flat-square" alt="ONNX Runtime"/></a>
+
+</div>
+
+---
 
 ## Table of contents
 
