@@ -1,0 +1,25 @@
+pipeline:
+  sample_rate_hz: 200.0
+  camera_fps: 30
+  ppg_window: 64
+  max_sync_skew_ms: 80
+  inference_target_latency_ms: 50
+
+dsp:
+  bandpass_low_hz: 0.5
+  bandpass_high_hz: 4.0
+
+fusion:
+  ppg_weight: 0.65
+  visual_weight: 0.35
+  visual_feature_dim: 16
+
+model:
+  onnx_path: models/fusion_mlp.onnx
+
+logging:
+  level: INFO
+
+benchmark:
+  warmup_iterations: 5
+  timed_iterations: 200
