@@ -43,7 +43,7 @@ private:
     const std::size_t window_len_;
     const std::chrono::nanoseconds max_skew_;
 
-    mutable std::mutex mutex_;
+    mutable std::mutex mutex_;  // const query methods take the lock
     std::deque<acquisition::PpgSample> ppg_buf_;
     std::deque<CameraFrameMeta> cam_buf_;
     std::deque<AlignedWindow> ready_;

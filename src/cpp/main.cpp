@@ -74,7 +74,6 @@ int main(int argc, char** argv) {
     ppg::dsp::PpgProcessingPipeline dsp(cfg.sample_hz, 0.5, 4.0, cfg.window_len);
     ppg::acquisition::SensorSimulator sensor(cfg.hr_bpm, cfg.sample_hz);
 
-    std::atomic<std::uint64_t>{0};
     std::atomic<std::uint64_t> frame_id{0};
     std::atomic<bool> shutdown{false};
     std::atomic<std::uint64_t> windows_out{0};
