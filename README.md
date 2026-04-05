@@ -159,7 +159,7 @@ Re-run `benchmarks/run_benchmarks.py` and paste JSON into your release notes for
 
 ```
 src/cpp/{acquisition,signal_processing,gpio,sync}
-src/python/{preprocessing,fusion,inference,io}
+src/python/{preprocessing,fusion,inference,bridge}
 drivers/{i2c,spi,camera}
 configs/
 scripts/
