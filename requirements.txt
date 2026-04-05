@@ -1,0 +1,10 @@
+# Inference + fusion (Pi / dev)
+numpy>=1.24.0,<3
+onnx>=1.15.0
+onnxruntime>=1.16.0
+PyYAML>=6.0.1
+opencv-python-headless>=4.8.0
+
+# Dev / test
+pytest>=7.4.0
+pytest-cov>=4.1.0
